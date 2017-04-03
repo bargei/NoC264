@@ -13,3 +13,10 @@
 *.jdi
 *db
 *synthesis
+*.d
+*.o
+*obj
+*.264
+*.yuv
+*Software_benchmark
+*Software_benchmark_bsp
