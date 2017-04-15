@@ -4,6 +4,32 @@ use ieee.numeric_std.all;
 use ieee.std_logic_misc.all;
 use ieee.math_real.all;
 
+-------------------------------------------------------------------------------
+--- chroma_motion.vhd
+--- Ian Barge, 2017
+---
+--- Implements an NoC node for performing motion compensation on chroma samples.
+--- Designed for use with the NoC generated using CONNECT 
+--- http://users.ece.cmu.edu/~mpapamic/connect/
+--- 
+--- see https://www.itu.int/rec/T-REC-H.264-201610-I/en for more information on
+--- this algorith (section 8.4.2.2.2) and h.264 as a whole
+---
+--- Input packet format:
+---    flit 0: 63..40 RESERVED
+---            39..32 motion vector Cr channel, x component
+---            31..24 motion vector Cr channel, y component
+---            23..16 motion vector Cb channel, x component
+---            15..8  motion vector Cb channel, y component
+---            7..0   packet identifier
+---
+---    flit 1: Cr reference (0,0), (1,0), (2,0), (0,1), (1,1), (2,1), ... (1,2)*
+---    flit 2: Cb reference (0,0), (1,0), (2,0), (0,1), (1,1), (2,1), ... (1,2)* 
+---    flit 3: 63..40: RESERVED
+---            39..32: Cr reference (2,2)
+---            31..8:  RESERVED
+---            7..0:   Cb reference (2,2)
+---    * 8 bits each
 
 entity chroma_motion is
 generic(
@@ -31,9 +57,6 @@ port(
     set_tail_flit  : out std_logic;
     send_flit      : out std_logic;
     ready_to_send  : in  std_logic
-    
-    --debug
-    --state_out      : out std_logic_vector(7 downto 0)
     
 );
 end entity chroma_motion;
@@ -161,6 +184,7 @@ begin
     sel_vc_d    <= sel_vc_enc                                    when state = sel_vc    else sel_vc_q;
     
     --the algorithm
+    --2d linear interpolator for 2 2x2 blocks
     chroma_motion_x: for x in 1 downto 0 generate
         chroma_motion_y: for y in 1 downto 0 generate
             constant ref_0_0_index      : integer := x     + y*3;
@@ -287,25 +311,6 @@ begin
             next_state <= idle;
         end if;
 
-    end process;
-    
-    --state_out <= x"00" when state = idle           else 
-    --             x"01" when state = sel_vc         else 
-    --             x"02" when state = rx_header      else 
-    --             x"03" when state = dequeue_header else
-    --             x"04" when state = wait_rx_cr     else 
-    --             x"05" when state = rx_cr          else 
-    --             x"06" when state = dequeue_cr     else
-    --             x"07" when state = wait_rx_cb     else 
-    --             x"08" when state = rx_cb          else 
-    --             x"09" when state = dequeue_cb     else
-    --             x"0A" when state = wait_rx_crcb   else
-    --             x"0B" when state = rx_crcb        else
-    --             x"0C" when state = dequeue_crcb   else
-    --             x"0D" when state = wait_tx_header else
-    --             x"0E" when state = tx_header      else
-    --             x"0F" when state = wait_tx_data   else
-    --             x"10" when state = tx_data        else
-    --             x"FF";      
+    end process;  
     
 end architecture;
