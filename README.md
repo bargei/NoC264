@@ -4,13 +4,13 @@ NoC based h.264 decoder for FPGA
 For licensing info related to the CONNECT verilog and HEX files see LICENSE_CONNECT.
 Otherwise see LICENSE for licensing info for other source files.
 
-# How-to (3x3 implementation)
-1) Setup VGA connections
-2) Build hardware and program FPGA
-3) Build Buffer Node SW and run on NIOS II core 1
-4) Build Parser Node SW and debug on NIOS II core 0
+## How-to (3x3 implementation)
+    1) Setup VGA connections
+    2) Build hardware and program FPGA
+    3) Build Buffer Node SW and run on NIOS II core 1
+    4) Build Parser Node SW and debug on NIOS II core 0
 
-## Step 1: Setup VGA connections
+### Step 1: Setup VGA connections
     1.1) make the following connections on GPIO header 1 / VGA board (see https://github.com/fenlogic/vga666)
 
     SIGNAL       | FPGA PIN NAME | PIN LOCATION ON GPIO HEADER | PIN LOCATION ON VGA BOARD
@@ -36,7 +36,7 @@ Otherwise see LICENSE for licensing info for other source files.
     vga_red(4)   | gpio(33)      | 38                          | 38
     vga_red(5)   | gpio(35)      | 40                          | 40
 
-## Step 2: Build hardware and program FPGA
+### Step 2: Build hardware and program FPGA
     2.1) Download or clone NoC264_3x3 to desktop
     2.2) Open project file using Quartus 16.1 Standard
     2.3) Open nios_system.qsys using Qsys and click generate HDL
@@ -45,8 +45,8 @@ Otherwise see LICENSE for licensing info for other source files.
     2.6) Run Fitter and Assembler
     2.7) Use programming tool to download HW to FPGA
 
-## Step 3: Build Buffer Node SW and run on NIOS II core 1
+### Step 3: Build Buffer Node SW and run on NIOS II core 1
     comming soon
     
-## Step 4: Build Parser Node SW and debug on NIOS II core 0
+### Step 4: Build Parser Node SW and debug on NIOS II core 0
     comming soon
