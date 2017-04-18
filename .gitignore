@@ -20,3 +20,5 @@
 *.yuv
 *Software_benchmark
 *Software_benchmark_bsp
+*Buffer_Node_bsp
+*Parser_Node_bsp
