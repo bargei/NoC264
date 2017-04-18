@@ -4,7 +4,7 @@ NoC based h.264 decoder for FPGA
 For licensing info related to the CONNECT verilog and HEX files see LICENSE_CONNECT.
 Otherwise see LICENSE for licensing info for other source files.
 
-## How-to (3x3 implementation)
+## First Time Setup How-to (3x3 implementation)
     1) Setup VGA connections
     2) Build hardware and program FPGA
     3) Build Buffer Node SW and run on NIOS II core 1
@@ -46,7 +46,31 @@ Otherwise see LICENSE for licensing info for other source files.
     2.7) Use programming tool to download HW to FPGA
 
 ### Step 3: Build Buffer Node SW and run on NIOS II core 1
-    comming soon
+    3.1)  From Quartus open "Nios II Software Build Tools for Eclipse" under Tools
+    3.2)  Select ...\NoC264\NoC264_3x3\ as the workspace
+    3.3)  Right click in project explorer and select new>>Nios II Application and Bsp from Template
+    3.4)  Make the following selections
+    
+    SOPC Information File Name: nios_system.sopcinfo
+    CPU name:                   nios2_gen2_1
+    Project name:               Buffer_Node
+    Template:                   Blank Project
+    
+    leave other settings as default, and click finish
+    
+    3.5)  To refresh the makefile, copy the files from software\Buffer_Node from explorer and paste them into the eclipse project explorer pane under the Buffer_Node project. This doesn't actually move the files, but it causes eclipse to recognise them.
+    3.6)  Right click under Buffer_Node_bsp in the eclipse project explorer pane. Select Nios II>>BSP Editor...
+    3.7)  Under drivers tab select enable_small_driver
+          Under the main tab change bsp_cflags_optimization to -O3
+          Save, click generate and exit
+    3.9)  In the Buffer_Node project change APP_CFLAGS_OPTIMIZATION := -O0 to APP_CFLAGS_OPTIMIZATION := -O3
+    3.10) Build Buffer_Node
+    3.11) To run: right click in project and select Run As>>Nios II Hardware
     
 ### Step 4: Build Parser Node SW and debug on NIOS II core 0
-    comming soon
+    4.1) Same as step 3 with following modifications (more details comming soon)
+         Start from 3.3
+         CPU name     = nios2_gen2_0
+         Project name = Buffer_Node
+         To run: use "Debug As" instead of "Run As"
+         
