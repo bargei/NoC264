@@ -58,19 +58,20 @@ Otherwise see LICENSE for licensing info for other source files.
     
     leave other settings as default, and click finish
     
-    3.5)  To refresh the makefile, copy the files from software\Buffer_Node from explorer and paste them into the eclipse project explorer pane under the Buffer_Node project. This doesn't actually move the files, but it causes eclipse to recognise them.
-    3.6)  Right click under Buffer_Node_bsp in the eclipse project explorer pane. Select Nios II>>BSP Editor...
-    3.7)  Under drivers tab select enable_small_driver
+    3.5)  Right click under Buffer_Node_bsp in the eclipse project explorer pane. Select Nios II>>BSP Editor...
+    3.6)  Under drivers tab select enable_small_driver
           Under the main tab change bsp_cflags_optimization to -O3
           Save, click generate and exit
-    3.9)  In the Buffer_Node project change APP_CFLAGS_OPTIMIZATION := -O0 to APP_CFLAGS_OPTIMIZATION := -O3
-    3.10) Build Buffer_Node
-    3.11) To run: right click in project and select Run As>>Nios II Hardware
+    3.7)  Select all source files under Buffer_Node, right click and select "Add to Nios II Build"
+    3.8)  In the Buffer_Node project change APP_CFLAGS_OPTIMIZATION := -O0 to APP_CFLAGS_OPTIMIZATION := -O3
+    3.9)  Build Buffer_Node
+    3.10) To run: right click in project and select Run As>>Nios II Hardware
     
 ### Step 4: Build Parser Node SW and debug on NIOS II core 0
-    4.1) Same as step 3 with following modifications (more details comming soon)
+    4.1) Same as step 3 with following modifications
          Start from 3.3
          CPU name     = nios2_gen2_0
-         Project name = Buffer_Node
+         Project name = Parser_Node
          To run: use "Debug As" instead of "Run As"
+         While editing BSP: under drivers uncheck timer_0
          
