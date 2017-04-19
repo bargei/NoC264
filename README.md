@@ -63,8 +63,8 @@ Otherwise see LICENSE for licensing info for other source files.
           Under the main tab change bsp_cflags_optimization to -O3
           Save, click generate and exit
     3.7)  Select all source files under Buffer_Node, right click and select "Add to Nios II Build"
-    3.8)  In the Buffer_Node project change APP_CFLAGS_OPTIMIZATION := -O0 to APP_CFLAGS_OPTIMIZATION := -O3
-    3.9)  Build Buffer_Node
+    3.8)  In the Buffer_Node project Makefile change APP_CFLAGS_OPTIMIZATION := -O0 to APP_CFLAGS_OPTIMIZATION := -O3
+    3.9)  Build Project Buffer_Node
     3.10) To run: right click in project and select Run As>>Nios II Hardware
     
 ### Step 4: Build Parser Node SW and debug on NIOS II core 0
@@ -72,6 +72,7 @@ Otherwise see LICENSE for licensing info for other source files.
          Start from 3.3
          CPU name     = nios2_gen2_0
          Project name = Parser_Node
-         To run: use "Debug As" instead of "Run As"
-         While editing BSP: under drivers uncheck timer_0
-         
+         While editing BSP: under drivers uncheck timer_0 (pull/drag down a bit to see it)
+         Also, under Software Packages, check the altera_hostfs
+         To run: use "Debug As" instead of "Run As". New window will open, where you should click on Run icon. 
+         And watch monitor for the show! :-)         
