@@ -5,7 +5,7 @@ use ieee.std_logic_misc.all;
 
 
 
-ENTITY HPSFPGA IS
+ENTITY NoC_264_SoC IS
 PORT(
     ---------fpga connections-------------
     clock_50: in std_logic;
@@ -60,9 +60,9 @@ PORT(
 	 VGA_B       : out   std_logic_vector(7 downto 0) 
 
 );
-END HPSFPGA;
+END NoC_264_SoC;
 
-ARCHITECTURE MAIN OF HPSFPGA IS
+architecture main of NoC_264_SoC is
 
     -- constants
     constant data_width        : integer := 64;

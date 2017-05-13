@@ -10,7 +10,8 @@
 2.3) Open hps_fpga.qsys using Qsys and click generate HDL
 
 2.4) Run Synthesis on project
-2.5) Run tools>>Tcl Scripts>>nios_system_DDR2_Controller_p0_pin_assignments.tcl
+
+2.5) Run tools>>Tcl Scripts>>hps_sdram_p0_pin_assignments.tcl
 
 2.6) Run Fitter and Assembler
 
@@ -25,7 +26,7 @@
 
 
 ## 4) Build software
-4.1) power on the device and connect the usb-uart cable
+4.1) insert sd card, power on the device and connect the usb-uart cable
 
 4.2) using the serial terminal navigate to /media/fat_partition/work/scaled_down/parser/
 
