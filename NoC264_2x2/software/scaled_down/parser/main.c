@@ -219,7 +219,7 @@ int main(int argc, char *argv[]) {
   //int is_fat     = alt_up_sd_card_is_FAT16();
   //printf("test... 1234\n");
 
-  info=h264_open("streams/in.264");
+  info=h264_open("/media/fat_partition/work/scaled_down/streams/in.264");
   if(!info) return 1;
 
   //blank out the display
