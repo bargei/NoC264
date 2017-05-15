@@ -4,9 +4,9 @@ obj = $(src:.c=.o)
 LDFLAGS =
 CFLAGS	= -O3 -g -std=gnu99
 
-myprog: $(obj)
+parser_prog: $(obj)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 .PHONY: clean
 clean:
-	rm -f $(obj) myprog
+	rm -f $(obj) parser_prog
